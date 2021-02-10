@@ -23,10 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     hooks : {
       beforeCreate : (User) => {        
+        const { name, email, password } = User
         // Encrypt
-        User.name = CryptoJS.AES.encrypt(User.name, 'secret key 123').toString();
-        User.email = CryptoJS.AES.encrypt(User.email, 'secret key 123').toString();
-        User.password = CryptoJS.AES.encrypt(User.password, 'secret key 123').toString();
+        User.name = CryptoJS.AES.encrypt(name, 'secret key 123').toString();
+        User.email = CryptoJS.AES.encrypt(email, 'secret key 123').toString();
+        User.password = CryptoJS.AES.encrypt(password, 'secret key 123').toString();
       }
     }
   });
